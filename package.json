@@ -1,0 +1,22 @@
+{
+  "name": "andrea",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "dev": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AVTAndreaValdivia/andrea12.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AVTAndreaValdivia/andrea12/issues"
+  },
+  "homepage": "https://github.com/AVTAndreaValdivia/andrea12#readme",
+  "description": "",
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
