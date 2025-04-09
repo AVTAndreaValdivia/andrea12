@@ -1,5 +1,5 @@
 /*const mostrarMensaje=(mensaje)=>
-    {
+{
     return mensaje;
 }
 console.log(mostrarMensaje("hola"))*/
@@ -136,9 +136,213 @@ function secuenciaFibonacci() {
     return secuencia;
 }
 
+async function adivinarNumero() {
+    console.log("EJERCICIO 12");
+    const readline = require('readline');
+    const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
+
+    let numeroAleatorio = Math.floor(Math.random() * 10) + 1;
+
+    function adivinar() {
+        rl.question("Adivina el número (1-10): ", (respuesta) => {
+            let numero = parseInt(respuesta);
+            if (numero === numeroAleatorio) {
+                console.log("¡Correcto!");
+                rl.close();
+            } else {
+                console.log("Intenta de nuevo.");
+                adivinar();
+            }
+        });
+    }
+
+    adivinar();
+}
+
+async function contarRegresivamente() {
+    console.log("EJERCICIO 13");
+    const readline = require('readline');
+    const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
+
+    rl.question("Ingresa un número para contar regresivamente: ", (numero) => {
+        let count = parseInt(numero);
+        while (count >= 0) {
+            console.log(count);
+            count--;
+        }
+        rl.close();
+    });
+}
+
+async function validarEntrada() {
+    console.log("EJERCICIO 14");
+    const readline = require('readline');
+    const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
+
+    function pedirNumero() {
+        rl.question("Ingresa un número mayor que 0: ", (numero) => {
+            let num = parseInt(numero);
+            if (num > 0) {
+                console.log("Número válido:", num);
+                rl.close();
+            } else {
+                console.log("Número no válido.");
+                pedirNumero();
+            }
+        });
+    }
+
+    pedirNumero();
+}
+
+async function mostrarMenu() {
+    console.log("EJERCICIO 15");
+    const readline = require('readline');
+    const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
+
+    function mostrar() {
+        rl.question("Menú:\n1. Opción 1\n2. Opción 2\n3. Salir\nElige una opción: ", (opcion) => {
+            switch(opcion) {
+                case "1":
+                    console.log("Elegiste Opción 1");
+                    mostrar();
+                    break;
+                case "2":
+                    console.log("Elegiste Opción 2");
+                    mostrar();
+                    break;
+                case "3":
+                    console.log("Saliendo...");
+                    rl.close();
+                    break;
+                default:
+                    console.log("Opción inválida");
+                    mostrar();
+                    break;
+            }
+        });
+    }
+
+    mostrar();
+}
+
+async function sumarImpares() {
+    console.log("EJERCICIO 16");
+    let suma = 0;
+    for (let i = 1; i <= 50; i++) {
+        if (i % 2 !== 0) {
+            suma += i;
+        }
+        if (suma > 500) {
+            console.log("La suma ha superado 500:", suma);
+            break;
+        }
+    }
+}
+
+async function contadorIntentos() {
+    console.log("EJERCICIO 17");
+    const readline = require('readline');
+    const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
+
+    let intentos = 3;
+
+    function intentarLogin() {
+        if (intentos === 0) {
+            console.log("Acceso bloqueado");
+            rl.close();
+            return;
+        }
+        rl.question("Ingresa la contraseña: ", (password) => {
+            if (password === "1234") {
+                console.log("¡Login exitoso!");
+                rl.close();
+            } else {
+                intentos--;
+                console.log(`Intentos restantes: ${intentos}`);
+                intentarLogin();
+            }
+        });
+    }
+
+    intentarLogin();
+}
+
+async function sumarHastaCero() {
+    console.log("EJERCICIO 18");
+    const readline = require('readline');
+    const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
+
+    let suma = 0;
+
+    function sumarNumeros() {
+        rl.question("Ingresa un número (0 para terminar): ", (numero) => {
+            let num = parseInt(numero);
+            if (num === 0) {
+                console.log("La suma total es:", suma);
+                rl.close();
+            } else {
+                suma += num;
+                sumarNumeros();
+            }
+        });
+    }
+
+    sumarNumeros();
+}
+
+async function fibonacciHastaCien() {
+    console.log("EJERCICIO 19");
+    let fibonacci = [0, 1];
+
+    while (true) {
+        let siguiente = fibonacci[fibonacci.length - 1] + fibonacci[fibonacci.length - 2];
+        if (siguiente > 100) break;
+        fibonacci.push(siguiente);
+    }
+
+    console.log(fibonacci);
+}
+
+async function multiplosDeTres() {
+    console.log("EJERCICIO 20");
+    let i = 3;
+    while (i < 50) {
+        console.log(i);
+        i += 3;
+    }
+}
+
 async function ejecutar() {
     await mostrarTablaDeMultiplicar();
     console.log(secuenciaFibonacci());
+    await adivinarNumero();
+    await contarRegresivamente();
+    await validarEntrada();
+    await mostrarMenu();
+    await sumarImpares();
+    await contadorIntentos();
+    await sumarHastaCero();
+    await fibonacciHastaCien();
+    await multiplosDeTres();
     interfazUsuario.close(); 
 }
 
